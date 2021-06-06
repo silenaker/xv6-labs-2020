@@ -20,3 +20,11 @@ myapi.key
 xv6.out*
 .vagrant/
 submissions/
+
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
