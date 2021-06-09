@@ -13,7 +13,6 @@ void find(char *dirpath, char *filename)
   struct dirent de;
   struct stat st;
   char filepath[PATH_MAX];
-  char *p;
   int slen;
 
   if ((fd = open(dirpath, O_RDONLY)) < 0)
@@ -24,11 +23,10 @@ void find(char *dirpath, char *filename)
 
   strcpy(filepath, dirpath);
   slen = strlen(filepath);
-  p = strchr(filepath, '/');
-  if (p == 0 || *(p + 1) != '\0')
+  if (filepath[slen - 1] != '/')
   {
-    filepath[slen] = '/';
-    filepath[++slen] = '\0';
+    filepath[slen++] = '/';
+    filepath[slen] = '\0';
   }
 
   while ((n = read(fd, &de, sizeof(struct dirent))) > 0)
